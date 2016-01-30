@@ -183,67 +183,67 @@ exports.list = function (req, res) {
   // for the appropriate article id. I figured that would be slower.
   var sortOps = { sort: { 'created' : -1 } };
 
-  Article.findOne({ '_id' : req.query.article })
+  Article.findById(req.query.article)
   .populate({
     path: 'replies',
     options: sortOps,
     populate: [{
       path: 'user',
-      select: 'displayName'
+      select: 'displayName username'
     }, {
       path: 'replies',
       options: sortOps,
       populate: [{
         path: 'user',
-        select: 'displayName'
+        select: 'displayName username'
       }, {
         path: 'replies',
         options: sortOps,
         populate: [{
           path: 'user',
-          select: 'displayName'
+          select: 'displayName username'
         }, {
           path: 'replies',
           options: sortOps,
           populate: [{
             path: 'user',
-            select: 'displayName'
+            select: 'displayName username'
           }, {
             path: 'replies',
             options: sortOps,
             populate: [{
               path: 'user',
-              select: 'displayName'
+              select: 'displayName username'
             }, {
               path: 'replies',
               options: sortOps,
               populate: [{
                 path: 'user',
-                select: 'displayName'
+                select: 'displayName username'
               }, {
                 path: 'replies',
                 options: sortOps,
                 populate: [{
                   path: 'user',
-                  select: 'displayName'
+                  select: 'displayName username'
                 }, {
                   path: 'replies',
                   options: sortOps,
                   populate: [{
                     path: 'user',
-                    select: 'displayName'
+                    select: 'displayName username'
                   }, {
                     path: 'replies',
                     options: sortOps,
                     populate: [{
                       path: 'user',
-                      select: 'displayName'
+                      select: 'displayName username'
                     }, {
                       path: 'replies',
                       options: sortOps,
                       populate: {
                         path: 'user',
-                        select: 'displayName'
+                        select: 'displayName username'
                       }
                     }]
                   }]
@@ -261,6 +261,7 @@ exports.list = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      console.log(JSON.stringify(article, null, 2));
       res.json(article.replies);
     }
   });

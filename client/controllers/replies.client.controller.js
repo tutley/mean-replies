@@ -7,9 +7,9 @@
 //   ['vm', '$stateParams', '$location', 'Authentication', 'Replies', 'RecursionHelper', 
 //   function (vm, $stateParams, $location, Authentication, Replies, RecursionHelper) {
 
-   angular
-    .module('replies')
-    .controller('RepliesController', RepliesController);
+angular
+.module('replies')
+.controller('RepliesController', RepliesController);
 
 RepliesController.$inject = ['$scope', '$state', 'Authentication', 'Replies', 'RecursionHelper'];
 function RepliesController($scope, $state, Authentication, Replies, RecursionHelper) {
@@ -158,7 +158,7 @@ function RepliesController($scope, $state, Authentication, Replies, RecursionHel
 
   // Find a list of Replies
   vm.find = function () {
-    var articleId = vm.articleId;
+    var articleId = $state.params.articleId;
 
 
     Replies.query({ 'article' : articleId }, function(response) {  

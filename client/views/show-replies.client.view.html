@@ -30,12 +30,12 @@
       <p  ng-show="vm.replyToEdit !== reply._id"><span ng-bind-html="reply.content | linky:'_blank'"></span></p>
       <div class="reply-meta">
         <div uib-collapse="(vm.currentReplyId === reply._id || vm.replyToDelete === reply._id || vm.replyToEdit === reply._id)">
-          <span ng-if="(reply.user._id == vm.authentication.user._id && reply.replies.length === 0)">
+          <span ng-if="(reply.user.username == vm.authentication.user.username && reply.replies.length === 0)">
             <a href="#" ng-click="vm.prepareDelete(reply._id)">delete</a></span>
-<!--           <span ng-if="reply.user._id != vm.authentication.user._id">
+<!--           <span ng-if="reply.user.username != vm.authentication.user.username">
             <a href="#" ng-click="vm.prepareReport(reply._id)">report</a>
           </span> -->
-          <span ng-if="reply.user._id == vm.authentication.user._id">
+          <span ng-if="reply.user.username == vm.authentication.user.username">
             <a href="#" ng-click="vm.prepareEdit(reply)">edit</a>
           </span>
           <span ng-if="reply.nestedLevel < 9">
