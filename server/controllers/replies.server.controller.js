@@ -261,7 +261,6 @@ exports.list = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      console.log(JSON.stringify(article, null, 2));
       res.json(article.replies);
     }
   });
