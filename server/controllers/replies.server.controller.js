@@ -62,8 +62,7 @@ exports.create = function (req, res) {
         } else {
           Article.findByIdAndUpdate(req.body.article,
             { $push: { 'replies': reply._id },
-              $inc: { 'replyCount': 1 },
-              $addToSet: { 'submitters': req.user } },
+              $inc: { 'replyCount': 1 } },
             { safe: true },
             function(err, oldReply) {
               if (err) {
