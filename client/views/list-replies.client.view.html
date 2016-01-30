@@ -1,0 +1,46 @@
+<section ng-controller="RepliesController" ng-init="find()">
+<div class="container">
+  <!--   <div>
+      <h4>Replies</h4>
+    </div>
+   -->
+    <!-- Top Level Reply form - only shows after reply clicked -->
+    <div class="row">
+      <div ng-if="topReplyAvailable" class="col-md-8">
+        <div ng-show="topReplyCollapsed">
+          <button class="btn btn-primary btn-sm" ng-click="topReplyCollapsed = !topReplyCollapsed">
+            Reply to this Article
+          </button>
+        </div>
+        <div collapse="topReplyCollapsed">
+          <div class="form-group">
+            <label for="topReply">Enter your thoughts about this Article:</label>
+            <div>
+              <small>
+                <p class="bg-warning">This will submit your personal editorial about this Article, and add you to the list of submitters.</p>
+              </small>
+            </div>
+            <textarea name="topReply" ng-model="topReply.content" class="form-control" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm" ng-click="createTop(article._id)">Submit</button>
+          <button class="btn btn-default btn-sm" ng-click="topReplyCollapsed=true;cancelTopReply();">Cancel</button>
+          <div ng-show="topReply.error" class="text-danger">
+            <strong ng-bind="topReply.error"></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row"> &nbsp;</div>
+    <div class="row">
+      <div class="post-replies">
+          <form name="replyForm">
+            <div class="media" ng-repeat="reply in replies">
+              <show-replies reply="reply"></show-replies>
+            </div>
+          </form>
+      </div>
+    </div>
+<!--   <div>Debugging</div>
+  <div><pre>{{ prettyReplies }}</pre></div> -->
+</div>
+</section>
