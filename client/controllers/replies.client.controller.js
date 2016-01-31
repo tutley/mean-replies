@@ -71,7 +71,8 @@ function RepliesController($scope, $state, Authentication, Replies, RecursionHel
     reply.$save(function(response) {
       vm.replies.unshift(response);
       vm.topReply = {};
-      vm.topReplyAvailable = false;
+      vm.topReplyAvailable = true;
+      vm.topReplyCollapsed = true;
     }, function(errorResponse) {
       vm.topReply.error = errorResponse.data.message;
     });
